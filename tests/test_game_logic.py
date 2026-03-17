@@ -1,4 +1,4 @@
-from logic_utils import check_guess
+from logic_utils import check_guess, parse_guess, get_range_for_difficulty, update_score
 
 def test_winning_guess():
     # If the secret is 50 and guess is 50, it should be a win
@@ -14,3 +14,24 @@ def test_guess_too_low():
     # If secret is 50 and guess is 40, hint should be "Too Low"
     result = check_guess(40, 50)
     assert result == "Too Low"
+
+def test_parse_guess_rejects_text():
+    ok, value, err = parse_guess("hello")
+    assert ok is False
+    assert value is None
+    assert err == "That is not a number."
+
+
+def test_hard_mode_range_is_harder_than_normal():
+    low, high = get_range_for_difficulty("Hard")
+    assert (low, high) == (1, 200)
+
+
+def test_update_score_win_rewards_points():
+    score = update_score(0, "Win", 1)
+    assert score == 90
+
+
+def test_update_score_wrong_guess_penalizes():
+    score = update_score(50, "Too High", 2)
+    assert score == 45

@@ -27,11 +27,22 @@ It wrote the code, ran away, and now the game is unplayable.
 
 - [ ] Describe the game's purpose.
 - [ ] Detail which bugs you found.
+         - secret number handling
+         - hint logic incorrect
+         - logic tightly coupled with UI
+         - difficulty scaling issue
+         - improper session state handling caused Streamlit exception
 - [ ] Explain what fixes you applied.
+      - refactored logic into logic_utils.py
+      - fixed comparison logic
+      - Hard → larger range than Normal
+      - implemented safe reset logic
+      - callback-based state reset
+      - fixed textbox clearing
 
 ## 📸 Demo
 
-- [ ] [Insert a screenshot of your fixed, winning game here]
+- [ ] (demo/demo1.png)
 
 ## 🚀 Stretch Features
 
